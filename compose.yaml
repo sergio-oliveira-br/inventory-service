@@ -1,9 +1,38 @@
 services:
+  # Serviço do PostgreSQL
   postgres:
     image: 'postgres:latest'
+    container_name: inventory-service-postgres
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_DB: inventory_db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Brasil2024
     ports:
-      - '5432'
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistência de dados
+
+  # Serviço do microserviço Inventory (Spring Boot)
+  inventory-service:
+    build:
+      context: .  # Caminho para o diretório onde está o Dockerfile
+    container_name: inventory-service-app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/inventory_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Brasil2024
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres  # Garante que o PostgreSQL seja iniciado antes do seu serviço
+    networks:
+      - app-network
+
+# Definir volumes
+volumes:
+  postgres_data: {}  # Definição do volume para persistência de dados do PostgreSQL
+
+# Definir redes
+networks:
+  app-network:
+    driver: bridge
