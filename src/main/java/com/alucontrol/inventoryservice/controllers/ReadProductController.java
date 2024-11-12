@@ -33,4 +33,14 @@ public class ReadProductController {
         Product productFound = readProductServices.findById(id);
         return ResponseEntity.ok(productFound);
     }
+
+    @GetMapping("/check-inventory/product-id/{productId}")
+    public ResponseEntity<Boolean> checkInventory(@PathVariable("productId") Long productId,
+                                                  @RequestParam("requestedQuantity") int requestedQuantity) {
+
+        boolean hasStock = readProductServices.hasSufficientStock(productId, requestedQuantity);
+
+        System.out.println("Acessando metodo boolean returno: " + hasStock);
+        return ResponseEntity.ok(hasStock);
+    }
 }
