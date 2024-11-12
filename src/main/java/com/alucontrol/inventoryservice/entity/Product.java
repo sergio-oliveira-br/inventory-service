@@ -12,7 +12,8 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
+
     private ProductType type; //From Enum
 
     //@NonNull(message = "O nome do produto é essencial para identificação")
