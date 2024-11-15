@@ -39,8 +39,6 @@ public class ReadProductController {
                                                   @RequestParam("requestedQuantity") int requestedQuantity) {
 
         boolean hasStock = readProductServices.hasSufficientStock(productId, requestedQuantity);
-
-        System.out.println("Acessando metodo boolean returno: " + hasStock);
         return ResponseEntity.ok(hasStock);
     }
 }
