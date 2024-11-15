@@ -29,11 +29,7 @@ public class ReadProductServices {
     public boolean hasSufficientStock(Long productId, Integer quantity) {
 
         Product product = productRepository.findById(productId)
-            .orElseThrow(() -> new ResourceNotFoundException("Product with id " + productId + " not found"));
-
-        System.out.println("Acessando o Produto ID: " + productId);
-        System.out.println("Quantidade Solicitada " + quantity);
-        System.out.println("Quantidade Disponivel: " + product.getQtyAvailable());
+            .orElseThrow(() -> new ResourceNotFoundException("Produto ID " + productId + " não encontrado"));
 
         return product.getQtyAvailable() >= quantity;
     }
