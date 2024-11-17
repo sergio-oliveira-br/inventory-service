@@ -26,4 +26,12 @@ public class UpdateProductController {
         updateProductService.decreaseStock(productId, requestedQuantity);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/increase-sold/product-id/{productId}")
+    public ResponseEntity<Void> updateSold(@PathVariable Long productId,
+                                           @RequestParam int requestedQuantity) {
+
+        updateProductService.increaseSoldQty(productId, requestedQuantity);
+        return ResponseEntity.ok().build();
+    }
 }
