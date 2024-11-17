@@ -20,13 +20,10 @@ public class UpdateProductController {
     }
 
     @PutMapping("/decrease-stock/product-id/{productId}")
-    public ResponseEntity<Product> updateStock(@PathVariable Long productId,
-                                               @RequestParam int requestedQuantity,
-                                               @RequestBody Product product) {
-
-        LogUtil.info("Controlador Acessado: " + product);
+    public ResponseEntity<Void> updateStock(@PathVariable Long productId,
+                                               @RequestParam int requestedQuantity) {
 
         updateProductService.decreaseStock(productId, requestedQuantity);
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok().build();
     }
 }
