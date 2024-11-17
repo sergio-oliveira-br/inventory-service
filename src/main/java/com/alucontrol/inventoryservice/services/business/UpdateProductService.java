@@ -33,14 +33,23 @@ public class UpdateProductService {
 
             LogUtil.logDatabaseOperation("Produto id '" + productId +
                     "' teve o estoque reduzido em '" + requestedQuantity+ "' un");
-            
+
             productRepository.save(product);
             return;
         }
         throw new ResourceNotFoundException("Produto id '" + productId + "' não encontrado");
     }
 
-            LogUtil.info("Produto atualizado: " + product);
+
+    @Transactional
+    public void increaseSoldQty(Long productId, int requestedQuantity) {
+
+        // Check if the product exist in the DB
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setQtySold(product.getQtySold() + requestedQuantity);
+            LogUtil.logDatabaseOperation("Quantidade '" + requestedQuantity + "' incrementada nas vendas do produto id '" + productId + "'");
             productRepository.save(product);
             return;
         }
