@@ -2,6 +2,7 @@ package com.alucontrol.inventoryservice.controllers;
 
 import com.alucontrol.inventoryservice.entity.Product;
 import com.alucontrol.inventoryservice.services.business.ReadProductServices;
+import com.alucontrol.inventoryservice.tracking.LogUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,7 @@ public class ReadProductController {
                                                   @RequestParam("requestedQuantity") int requestedQuantity) {
 
         boolean hasStock = readProductServices.hasSufficientStock(productId, requestedQuantity);
+        LogUtil.info("Resposta do Metodo CheckInventory dentro do Inventory-Service. HasStock: " + hasStock);
         return ResponseEntity.ok(hasStock);
     }
 }
