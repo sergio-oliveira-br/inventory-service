@@ -33,6 +33,12 @@ public class UpdateProductService {
 
             LogUtil.logDatabaseOperation("Produto id '" + productId +
                     "' teve o estoque reduzido em '" + requestedQuantity+ "' un");
+            
+            productRepository.save(product);
+            return;
+        }
+        throw new ResourceNotFoundException("Produto id '" + productId + "' não encontrado");
+    }
 
             LogUtil.info("Produto atualizado: " + product);
             productRepository.save(product);
