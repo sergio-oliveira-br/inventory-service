@@ -20,9 +20,9 @@ public class GlobalExceptionHandler {
 
         ProblemDetails problemDetails = new ProblemDetails(
                 HttpStatus.NOT_FOUND.toString(),
-                "Resource Not Found",
+                "Product Not Found",
                 ex.getMessage(),
-                "O recurso solicitado não foi encontrado",
+                "O produto solicitado não foi encontrado",
                 UUID.randomUUID()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problemDetails);
