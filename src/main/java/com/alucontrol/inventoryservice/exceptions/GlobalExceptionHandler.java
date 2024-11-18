@@ -15,8 +15,8 @@ import java.util.concurrent.TimeoutException;
 public class GlobalExceptionHandler {
 
     // Handle custom resource not found exception
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ProblemDetails>  handleResourceNotFoundException(ResourceNotFoundException ex){
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ProblemDetails>  handleResourceNotFoundException(ProductNotFoundException ex){
 
         ProblemDetails problemDetails = new ProblemDetails(
                 HttpStatus.NOT_FOUND.toString(),

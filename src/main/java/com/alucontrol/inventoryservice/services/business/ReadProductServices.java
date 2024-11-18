@@ -1,7 +1,7 @@
 package com.alucontrol.inventoryservice.services.business;
 
 import com.alucontrol.inventoryservice.entity.Product;
-import com.alucontrol.inventoryservice.exceptions.ResourceNotFoundException;
+import com.alucontrol.inventoryservice.exceptions.ProductNotFoundException;
 import com.alucontrol.inventoryservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class ReadProductServices {
     public boolean hasSufficientStock(Long productId, Integer quantity) {
 
         Product product = productRepository.findById(productId)
-            .orElseThrow(() -> new ResourceNotFoundException("Produto ID " + productId + " não encontrado"));
+            .orElseThrow(() -> new ProductNotFoundException("Produto ID " + productId + " não encontrado"));
 
         return product.getQtyAvailable() >= quantity;
     }

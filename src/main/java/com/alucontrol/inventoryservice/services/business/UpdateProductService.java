@@ -1,7 +1,7 @@
 package com.alucontrol.inventoryservice.services.business;
 
 import com.alucontrol.inventoryservice.entity.Product;
-import com.alucontrol.inventoryservice.exceptions.ResourceNotFoundException;
+import com.alucontrol.inventoryservice.exceptions.ProductNotFoundException;
 import com.alucontrol.inventoryservice.repository.ProductRepository;
 import com.alucontrol.inventoryservice.tracking.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class UpdateProductService {
             productRepository.save(product);
             return;
         }
-        throw new ResourceNotFoundException("Produto id '" + productId + "' não encontrado");
+        throw new ProductNotFoundException("Produto id '" + productId + "' não encontrado");
     }
 
 
@@ -53,6 +53,6 @@ public class UpdateProductService {
             productRepository.save(product);
             return;
         }
-        throw new ResourceNotFoundException("Produto id '" + productId + "' não encontrado");
+        throw new ProductNotFoundException("Produto id '" + productId + "' não encontrado");
     }
 }
