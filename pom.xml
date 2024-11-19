@@ -117,13 +117,16 @@
         </dependency>
 
 
-        <!-- The main library for creating declarative HTTP clients -->
+        <!-- The main library for creating declarative HTTP clients
+             Services such as inventory-service and customer-service,
+            which only register in Eureka, do not need the dependency of Feign.
+            Only that of the client Eureka-->
         <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>4.1.3</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+<!--            <version>4.1.3</version>-->
+<!--        </dependency>-->
 
 
         <!-- Spring Cloud Sleuth for distributed tracing -->
