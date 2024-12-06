@@ -117,33 +117,6 @@
             <scope>test</scope>
         </dependency>
 
-
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-tracing-bridge-brave</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.zipkin.reporter2</groupId>
-            <artifactId>zipkin-reporter-brave</artifactId>
-        </dependency>
-
-
-<!--        <dependency>-->
-<!--            <groupId>io.micrometer</groupId>-->
-<!--            <artifactId>micrometer-registry-datadog</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-
-        <!-- Dependência para registrar no Eureka
-            Services that only provide data (Register in Eureka but do not consume)
-            Services such as inventory-service and customer-service,
-            which only register in Eureka, do not need the dependency of Feign.
-            Only that of the client Eureka-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
     </dependencies>
 
 
