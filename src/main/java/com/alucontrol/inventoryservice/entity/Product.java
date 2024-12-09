@@ -1,6 +1,7 @@
 package com.alucontrol.inventoryservice.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
@@ -25,13 +26,25 @@ public class Product {
 
     //@Positive(message = "Esta quantidade refere-se a sua quantidade disponivel em estoque, e deve ser positiva")
     private Long qtyAvailable;
-    private Long qtySold;
-    private Long qtyRented;
-    private Long qtyRentedInProgress;
+
+    private Long qtySold; //defult = 0L
+    private Long qtyRented; //defult = 0L
+    private Long qtyRentedInProgress; //defult = 0L
     private LocalDateTime lastMove;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+
+    //This will make sure that, when the product will is created, it starts as defult = 0
+    @PrePersist
+    protected void initializeDefaults() {
+        if (this.qtySold == null && this.qtyRented == null && this.qtyRentedInProgress == null) {
+            this.qtySold = 0L;
+            this.qtyRented = 0L;
+            this.qtyRentedInProgress = 0L;
+        }
+    }
 
 }
 
