@@ -36,8 +36,8 @@ public class ReadProductController {
     }
 
     @GetMapping("/check-inventory/product-id/{productId}")
-    public ResponseEntity<Boolean> checkInventory(@PathVariable("productId") Long productId,
-                                                  @RequestParam("requestedQuantity") int requestedQuantity) {
+    public ResponseEntity<Boolean> checkInventory(@PathVariable Long productId,
+                                                  @RequestParam int requestedQuantity) {
 
         boolean hasStock = readProductServices.hasSufficientStock(productId, requestedQuantity);
         LogUtil.info("Resposta do Metodo CheckInventory dentro do Inventory-Service. HasStock: " + hasStock);
