@@ -77,6 +77,6 @@ public class ReadProductServiceTest {
         ProductNotFoundException myException = assertThrows(ProductNotFoundException.class, () ->
                 readProductServices.hasSufficientStock(productIdTest, requestedQtyTest));
 
-        assertEquals("O produto não existe", myException.getMessage());
+        assertEquals("Produto ID " + productIdTest + " não encontrado", myException.getMessage());
     }
 }
